@@ -1,15 +1,16 @@
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import thunk from 'redux-thunk';
+import { BrowserRouter } from 'react-router-dom';
 import {
     applyMiddleware,
     compose,
     createStore,
 } from 'redux';
+import thunk from 'redux-thunk';
+
 import App from './App';
-import reducers          from './reducers/index';
+import reducers from './reducers/index';
 
 const middlewares = [applyMiddleware(thunk)];
 

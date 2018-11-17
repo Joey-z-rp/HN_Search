@@ -1,126 +1,78 @@
 import * as React from 'react';
-import Layout from '../components/Layout';
-import {Input, Segment, Item, Pagination, Container, Button, Message, Label, Icon, Placeholder} from "semantic-ui-react";
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import * as moment from 'moment';
-import { doSearch, handleInputChangeAction, handlePageChangeAction } from '../actions/search';
-import { IState } from "../../types/state";
-import {IHit} from "../../types/search";
-import MediaQuery from 'react-responsive';
+import {
+    Item,
+    Message,
+    Segment,
+} from 'semantic-ui-react';
 
+import {
+    doSearch,
+    handleInputChangeAction,
+    handlePageChange,
+} from '../actions/search';
+import Layout from '../components/Layout';
+import Pagination from '../components/Pagination';
+import Placeholder from '../components/Placeholder';
+import { IHit } from '../../types/search';
+import { IState } from '../../types/stateAndAction';
+import Hit from './search/Hit';
+import SearchBar from './search/SearchBar';
 
 const mapStateToProps = (state: IState): IStateProps => ({
+    hits: state.search.result.hits,
     isFetching: state.search.isFetching,
-    page: state.search.page,
     nbHits: state.search.result.nbHits,
     nbPages: state.search.result.nbPages,
-    hits: state.search.result.hits,
+    page: state.search.page,
 });
 
-const mapDispatchToProps = (dispatch):IDispatchProps => ({
-    search: () => dispatch(doSearch()),
+const mapDispatchToProps = (dispatch): IDispatchProps => ({
+    changePage: page => dispatch(handlePageChange(page)),
     handleInputChange: input => dispatch(handleInputChangeAction(input)),
-    handlePageChange: page => dispatch(handlePageChangeAction(page)),
+    search: () => dispatch(doSearch()),
 });
 
-class Search extends React.Component<IProps, IComponentState> {
-
+class Search extends React.Component<IProps> {
     componentDidMount() {
         this.props.search();
     }
 
     render() {
         const {
-            search,
+            changePage,
             handleInputChange,
-            handlePageChange,
-            page,
-            nbHits,
-            nbPages,
             hits,
             isFetching,
+            nbHits,
+            nbPages,
+            page,
+            search,
         } = this.props;
 
         const resultCount = () => nbHits !== undefined
-            ? (<Message info content={`${nbHits} results found`} />)
+            ? <Message content={`${nbHits} results found`} info />
             : null;
-
-        const pagination = () => nbPages
-            ? (<Container textAlign="center">
-                    <Pagination
-                        activePage={page}
-                        totalPages={nbPages}
-                        size="mini"
-                        onPageChange={(event, data) => handlePageChange(data.activePage)}
-                    />
-                </Container>)
-            : null;
-
-        const createItem = (data: IHit) => (
-            <Item>
-                <Item.Content>
-                    <Item.Header as={data.url ? 'a' : null} href={data.url}>{data.title}</Item.Header>
-                    <MediaQuery minWidth={768}>
-                        {(matches) => {
-                            const size = matches ? 'medium' : 'mini';
-                            return (
-                                <Item.Meta>
-                                    <Label size={size}>{data.points} points</Label>
-                                    <Label size={size}><Icon name="user" /> {data.author}</Label>
-                                    <Label size={size}>{moment(data.created_at).fromNow()}</Label>
-                                    <Label size={size}>{data.num_comments} comments</Label>
-                                    {
-                                        data.url && matches
-                                            ? (<Label size={size} as="a" href={data.url}>({data.url})</Label>)
-                                            : null
-                                    }
-                                </Item.Meta>
-                            );
-                        }}
-                    </MediaQuery>
-                    <Item.Description>
-                        {data.comment_text}
-                    </Item.Description>
-                </Item.Content>
-            </Item>
-        );
 
         return (
             <Layout>
-                <Input
-                    fluid
-                    action={<Button color='teal' content='Search' onClick={() => search()} />}
-                    placeholder='Search...'
-                    icon='search'
-                    iconPosition='left'
-                    onChange={(event, data) => handleInputChange(data.value)}
+                <SearchBar
+                    handleInputChange={handleInputChange}
+                    search={search}
                 />
                 {resultCount()}
                 <Segment loading={isFetching}>
-                    {
-                        isFetching
-                            ? (
-                                <Placeholder>
-                                    <Placeholder.Header>
-                                        <Placeholder.Line />
-                                        <Placeholder.Line />
-                                    </Placeholder.Header>
-                                    <Placeholder.Paragraph>
-                                        <Placeholder.Line />
-                                        <Placeholder.Line />
-                                        <Placeholder.Line />
-                                        <Placeholder.Line />
-                                    </Placeholder.Paragraph>
-                                </Placeholder>
-                            )
-                            : null
-                    }
+                    {isFetching ? <Placeholder /> : null}
                     <Item.Group divided>
-                        {(hits || []).map(hit => createItem(hit))}
+                        {(hits || []).map(hit => <Hit key={hit.objectID} data={hit} />)}
                     </Item.Group>
                 </Segment>
-                {pagination()}
+                <Pagination
+                    handlePageChange={changePage}
+                    nbPages={nbPages}
+                    page={page}
+                />
             </Layout>
         );
     }
@@ -129,21 +81,17 @@ class Search extends React.Component<IProps, IComponentState> {
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Search));
 
 interface IStateProps {
+    hits: IHit[] | undefined;
     isFetching: boolean;
-    page: number;
     nbHits: number | undefined;
     nbPages: number | undefined;
-    hits: IHit[] | undefined;
+    page: number;
 }
 
 interface IDispatchProps {
-    search: () => Promise<any>;
+    changePage: (page: number | string | undefined) => Promise<any>;
     handleInputChange: (input: string) => void;
-    handlePageChange: (page: number | string | undefined) => void;
-}
-
-interface IComponentState {
-
+    search: () => Promise<any>;
 }
 
 type IProps = IStateProps & IDispatchProps;

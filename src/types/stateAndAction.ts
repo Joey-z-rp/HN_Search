@@ -1,4 +1,4 @@
-import { ISearchResult } from "./search";
+import { ISearchResult } from './search';
 
 export interface IState {
     navigation: INavigationState;
@@ -15,4 +15,9 @@ export interface ISearchState {
     input: string;
     result: ISearchResult;
     page: number;
+}
+
+export interface IAction {
+    type: string;
+    [key: string]: any;
 }

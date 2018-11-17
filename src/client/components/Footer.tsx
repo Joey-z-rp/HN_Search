@@ -1,16 +1,17 @@
-import * as React                   from 'react';
+import * as React from 'react';
 import { Container, Menu, Segment } from 'semantic-ui-react';
+
 import * as s from './footer/Footer.css';
 
-const Footer: React.StatelessComponent = () => (
+const Footer: React.FunctionComponent = () => (
     <Segment className={s.fixDown} vertical>
         <Container textAlign="center">
             <div>
                 <Menu.Item>
-                    Copyright © {new Date().getFullYear()} Joey Zheng-
+                    Copyright © {new Date().getFullYear()} Joey Zheng
                 </Menu.Item>
                 <Menu.Item>
-                    v 0.x
+                    v 1.0
                 </Menu.Item>
             </div>
         </Container>
