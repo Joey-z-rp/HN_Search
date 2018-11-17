@@ -3,11 +3,13 @@ import {
     HANDLE_PAGE_CHANGE,
     HANDLE_SEARCH_RESULT,
     SEARCH,
+    SET_SEARCH_ERROR,
 } from '../actions/search';
 import { ISearchResult } from '../../types/search';
 import { IAction, ISearchState } from '../../types/stateAndAction';
 
 const initialState = {
+    error: null,
     isFetching: false,
     input: '',
     page: 1,
@@ -23,6 +25,7 @@ export default function reducer(
         case SEARCH:
             return {
                 ...state,
+                error: null,
                 isFetching: true,
                 page: 1,
                 result: {} as ISearchResult,
@@ -37,6 +40,9 @@ export default function reducer(
 
         case HANDLE_PAGE_CHANGE:
             return { ...state, isFetching: true, page: action.page };
+
+        case SET_SEARCH_ERROR:
+            return { ...state, error: action.error, isFetching: false };
 
         default:
             return state;

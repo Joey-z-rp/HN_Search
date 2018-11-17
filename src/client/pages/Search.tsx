@@ -1,11 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import {
-    Item,
-    Message,
-    Segment,
-} from 'semantic-ui-react';
 
 import {
     doSearch,
@@ -14,13 +9,14 @@ import {
 } from '../actions/search';
 import Layout from '../components/Layout';
 import Pagination from '../components/Pagination';
-import Placeholder from '../components/Placeholder';
 import { IHit } from '../../types/search';
 import { IState } from '../../types/stateAndAction';
-import Hit from './search/Hit';
+import ResultCount from './search/ResultCount';
 import SearchBar from './search/SearchBar';
+import SearchResult from './search/SearchResult';
 
 const mapStateToProps = (state: IState): IStateProps => ({
+    error: state.search.error,
     hits: state.search.result.hits,
     isFetching: state.search.isFetching,
     nbHits: state.search.result.nbHits,
@@ -42,6 +38,7 @@ class Search extends React.Component<IProps> {
     render() {
         const {
             changePage,
+            error,
             handleInputChange,
             hits,
             isFetching,
@@ -51,23 +48,19 @@ class Search extends React.Component<IProps> {
             search,
         } = this.props;
 
-        const resultCount = () => nbHits !== undefined
-            ? <Message content={`${nbHits} results found`} info />
-            : null;
-
         return (
             <Layout>
                 <SearchBar
                     handleInputChange={handleInputChange}
                     search={search}
                 />
-                {resultCount()}
-                <Segment loading={isFetching}>
-                    {isFetching ? <Placeholder /> : null}
-                    <Item.Group divided>
-                        {(hits || []).map(hit => <Hit key={hit.objectID} data={hit} />)}
-                    </Item.Group>
-                </Segment>
+                <ResultCount nbHits={nbHits} />
+                <SearchResult
+                    error={error}
+                    hits={hits}
+                    isFetching={isFetching}
+                    nbHits={nbHits}
+                />
                 <Pagination
                     handlePageChange={changePage}
                     nbPages={nbPages}
@@ -81,6 +74,7 @@ class Search extends React.Component<IProps> {
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Search));
 
 interface IStateProps {
+    error: Error | null;
     hits: IHit[] | undefined;
     isFetching: boolean;
     nbHits: number | undefined;

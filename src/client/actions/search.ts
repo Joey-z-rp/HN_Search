@@ -7,6 +7,7 @@ export const SEARCH = 'SEARCH';
 export const HANDLE_SEARCH_RESULT = 'HANDLE_SEARCH_RESULT';
 export const HANDLE_INPUT_CHANGE = 'HANDLE_INPUT_CHANGE';
 export const HANDLE_PAGE_CHANGE = 'HANDLE_PAGE_CHANGE';
+export const SET_SEARCH_ERROR = 'SET_SEARCH_ERROR';
 
 // action creators
 ​
@@ -26,6 +27,10 @@ export function handlePageChangeAction(page: number) {
     return { page, type: HANDLE_PAGE_CHANGE };
 }
 
+export function setSearchErrorAction(error: Error) {
+    return { error, type: SET_SEARCH_ERROR };
+}
+
 // async actions
 
 export function doSearch() {
@@ -35,7 +40,7 @@ export function doSearch() {
 
         return fetch(`http://hn.algolia.com/api/v1/search?query=${input}&tags=story`)
             .then(result => dispatch(handleSearchResultAction(result)))
-            .catch(err => console.log(err));
+            .catch(err => dispatch(setSearchErrorAction(err)));
     };
 }
 
@@ -46,6 +51,6 @@ export function handlePageChange(page) {
 
         return fetch(`http://hn.algolia.com/api/v1/search?query=${input}&tags=story&page=${page - 1}`)
             .then(result => dispatch(handleSearchResultAction(result)))
-            .catch(err => console.log(err));
+            .catch(err => dispatch(setSearchErrorAction(err)));
     };
 }

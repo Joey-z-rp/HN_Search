@@ -10,6 +10,7 @@ export interface INavigationState {
 }
 
 export interface ISearchState {
+    error: Error | null;
     isFetching: boolean;
     searchFor: string;
     input: string;
