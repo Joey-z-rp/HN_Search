@@ -2,11 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import {
-    doSearch,
-    handleInputChangeAction,
-    handlePageChange,
-} from '../actions/search';
+import { doSearch, handleInputChangeAction } from '../actions/search';
 import Layout from '../components/Layout';
 import Pagination from '../components/Pagination';
 import { IHit } from '../../types/search';
@@ -25,7 +21,7 @@ const mapStateToProps = (state: IState): IStateProps => ({
 });
 
 const mapDispatchToProps = (dispatch): IDispatchProps => ({
-    changePage: page => dispatch(handlePageChange(page)),
+    changePage: page => dispatch(doSearch(page)),
     handleInputChange: input => dispatch(handleInputChangeAction(input)),
     search: () => dispatch(doSearch()),
 });
@@ -83,7 +79,7 @@ interface IStateProps {
 }
 
 interface IDispatchProps {
-    changePage: (page: number | string | undefined) => Promise<any>;
+    changePage: (page: number) => Promise<any>;
     handleInputChange: (input: string) => void;
     search: () => Promise<any>;
 }

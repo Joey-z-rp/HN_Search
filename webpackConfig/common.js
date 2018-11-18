@@ -59,7 +59,7 @@ const client = {
                     },
                 ],
                 include: [
-                    path.resolve(__dirname, '../src/client'),
+                    path.resolve(__dirname, '../src'),
                 ],
             },
             {

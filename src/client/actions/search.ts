@@ -1,5 +1,7 @@
+import * as moment from 'moment';
 import fetch from '../utils/fetch';
-import { ISearchResult } from '../../types/search';
+import { DateRange, ISearchResult, SearchType, SortOrder } from '../../types/search';
+import { ISettingsState } from '../../types/stateAndAction';
 
 // action types
 
@@ -33,24 +35,87 @@ export function setSearchErrorAction(error: Error) {
 
 // async actions
 
-export function doSearch() {
+export function doSearch(page?: number) {
     return (dispatch, getState) => {
         const input = getState().search.input;
-        dispatch(searchAction(input));
+        const settings = getState().settings;
+        const url = generateURL(settings, input, page);
 
-        return fetch(`http://hn.algolia.com/api/v1/search?query=${input}&tags=story`)
+        if (page) {
+            dispatch(handlePageChangeAction(page));
+        } else {
+            dispatch(searchAction(input));
+        }
+
+        return fetch(url)
             .then(result => dispatch(handleSearchResultAction(result)))
             .catch(err => dispatch(setSearchErrorAction(err)));
     };
 }
 
-export function handlePageChange(page) {
-    return (dispatch, getState) => {
-        const input = getState().search.input;
-        dispatch(handlePageChangeAction(page));
+// Internal functions
 
-        return fetch(`http://hn.algolia.com/api/v1/search?query=${input}&tags=story&page=${page - 1}`)
-            .then(result => dispatch(handleSearchResultAction(result)))
-            .catch(err => dispatch(setSearchErrorAction(err)));
-    };
+function generateURL(
+    settings: ISettingsState,
+    input: string,
+    page?: number,
+): string {
+    const base = 'http://hn.algolia.com/api/v1/';
+
+    const endpoint = settings.sortOrder === SortOrder.Date
+        ? 'search_by_date'
+        : 'search';
+
+    const tags = getTags(settings.searchType);
+
+    const dateRange = getDateRange(settings);
+
+    const hitsPerPage = `&hitsPerPage=${settings.hitsPerPage}`;
+
+    const pageQuery = page ? `&page=${page - 1}` : '';
+
+    return `${base}${endpoint}?query=${input}${tags}${dateRange}${hitsPerPage}${pageQuery}`;
+}
+
+function getTags(searchType: SearchType): string {
+    switch (searchType) {
+        case SearchType.Stories:
+            return '&tags=story';
+
+        case SearchType.Comments:
+            return'&tags=comment';
+
+        default:
+            return '&tags=(story,comment)';
+    }
+}
+
+function getDateRange(settings: ISettingsState): string {
+    const prefix = '&numericFilters=created_at_i>';
+
+    const generateQuery = (amount, unit) => prefix + moment().subtract(amount, unit).unix();
+
+    switch (settings.dateRange) {
+        case DateRange.LastDay:
+            return generateQuery(24, 'hours');
+
+        case DateRange.PastWeek:
+            return generateQuery(7, 'days');
+
+        case DateRange.PastMonth:
+            return generateQuery(1, 'months');
+
+        case DateRange.PastYear:
+            return generateQuery(1, 'years');
+
+        case DateRange.Custom:
+            const [from, to] = [settings.from, settings.to]
+                .map(time => moment(time).unix())
+                .sort((a, b) => a - b);
+            const ONE_DAY_IN_SECOND = 86400;
+            return `${prefix}${from},created_at_i<${to + ONE_DAY_IN_SECOND}`; // Make target date inclusive
+
+        default:
+            return '';
+    }
 }

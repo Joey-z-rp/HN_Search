@@ -1,8 +1,9 @@
-import { ISearchResult } from './search';
+import { DateRange, ISearchResult, SearchType, SortOrder } from './search';
 
 export interface IState {
     navigation: INavigationState;
     search: ISearchState;
+    settings: ISettingsState;
 }
 
 export interface INavigationState {
@@ -16,6 +17,15 @@ export interface ISearchState {
     input: string;
     result: ISearchResult;
     page: number;
+}
+
+export interface ISettingsState {
+    dateRange: DateRange;
+    from: string;
+    hitsPerPage: number;
+    searchType: SearchType;
+    sortOrder: SortOrder;
+    to: string;
 }
 
 export interface IAction {

@@ -9,10 +9,10 @@ const Hit: React.FunctionComponent<{ data: IHit }> = ({ data }) => (
     <Item>
         <Item.Content>
             <Item.Header
-                as={data.url ? 'a' : null}
-                href={data.url}
+                as={data.url || data.story_url ? 'a' : null}
+                href={data.url || data.story_url}
             >
-                {data.title}
+                {data.title || data.story_title || 'Title not found'}
             </Item.Header>
             <MediaQuery maxWidth={768}>
                 {(matches) => {
@@ -20,7 +20,7 @@ const Hit: React.FunctionComponent<{ data: IHit }> = ({ data }) => (
                     return (
                         <Item.Meta>
                             <Label size={size}>
-                                {data.points} points
+                                {data.points || 0} points
                             </Label>
                             <Label size={size}>
                                 <Icon name="user" /> {data.author}
@@ -29,7 +29,7 @@ const Hit: React.FunctionComponent<{ data: IHit }> = ({ data }) => (
                                 {moment(data.created_at).fromNow()}
                             </Label>
                             <Label size={size}>
-                                {data.num_comments} comments
+                                {data.num_comments ? `${data.num_comments} comments` : 'comment'}
                             </Label>
                             {
                                 data.url && !matches
@@ -49,7 +49,11 @@ const Hit: React.FunctionComponent<{ data: IHit }> = ({ data }) => (
                 }}
             </MediaQuery>
             <Item.Description>
-                {data.comment_text}
+                {
+                    data.comment_text
+                        ? <div dangerouslySetInnerHTML={{ __html: data.comment_text }} /> // Assume the comment text is sanitised
+                        : null
+                }
             </Item.Description>
         </Item.Content>
     </Item>

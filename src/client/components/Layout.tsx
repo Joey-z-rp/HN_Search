@@ -1,45 +1,45 @@
-import 'react-datepicker/dist/react-datepicker.css';
-
-import * as moment from 'moment';
 import * as React from 'react';
-import DatePicker from 'react-datepicker';
 import { connect } from 'react-redux';
-import {
-    Button,
-    Container,
-    Icon,
-    Image,
-    Menu,
-    Segment,
-    Select,
-    Sidebar,
-} from 'semantic-ui-react';
+import { Button, Container, Icon, Image, Menu, Segment, Sidebar, } from 'semantic-ui-react';
 
 import { toggleSidebar } from '../actions/navigation';
-import { IState } from '../../types/stateAndAction';
+import { applySettings } from '../actions/settings';
+import { ISettingsState, IState } from '../../types/stateAndAction';
 import logo from '../../../public/favicon.png';
-import * as s from './layout/Layout.css';
 import Footer from './Footer';
+import * as s from './layout/Layout.css';
+import Settings from './layout/Settings';
 
 const mapStateToProps = (state: IState): IStateProps => ({
+    dateRange: state.settings.dateRange,
+    from: state.settings.from,
+    hitsPerPage: state.settings.hitsPerPage,
+    searchType: state.settings.searchType,
     showSidebar: state.navigation.showSidebar,
+    sortOrder: state.settings.sortOrder,
+    to: state.settings.to,
 });
 
 const mapDispatchToProps = (dispatch): IDispatchProps => ({
+    apply: settings => dispatch(applySettings(settings)),
     toggle: () => dispatch(toggleSidebar()),
 });
 
 export class Layout extends React.Component<IProps, IComponentState> {
     constructor(props) {
         super(props);
-        this.state = {
-            from: '2000-1-1',
-            to: '2000-1-1',
-        };
+
+        this.state = { ...this.getSettings() };
+    }
+
+    getSettings() {
+        const { dateRange, from, hitsPerPage, searchType, sortOrder, to } = this.props;
+
+        return { dateRange, from, hitsPerPage, searchType, sortOrder, to };
     }
 
     render() {
-        const { children, showSidebar, toggle } = this.props;
+        const { apply, children, showSidebar, toggle } = this.props;
 
         return (
             <Sidebar.Pushable
@@ -55,64 +55,44 @@ export class Layout extends React.Component<IProps, IComponentState> {
                     vertical
                     visible={showSidebar}
                 >
-                    <Menu.Item>
-                        <p>Search type</p>
-                        <Select options={[{ text: 'se', value: 123 }]} />
-                    </Menu.Item>
-                    <Menu.Item>
-                        <p>Sort order</p>
-                        <Select options={[{ text: 'se', value: 123 }]} />
-                    </Menu.Item>
-                    <Menu.Item fitted="horizontally">
-                        <p>Date range</p>
-                        <Select options={[{ text: 'se', value: 123 }]} />
-                        <p>From</p>
-                        <DatePicker
-                            className={s.minWidth}
-                            dateFormat="YYYY-MM-DD"
-                            onChange={date => this.setState({ from: date.format('YYYY-MM-DD') })}
-                            selected={moment(this.state.from)}
-                        />
-                        <p>To</p>
-                        <DatePicker
-                            className={s.minWidth}
-                            dateFormat="YYYY-MM-DD"
-                            selected={moment()}
-                        />
-                    </Menu.Item>
-                    <Menu.Item>
-                        <p>Hits per page</p>
-                        <Select options={[{ text: 'se', value: 123 }]} />
-                    </Menu.Item>
-                    <Menu.Item>
-                        <Button size="mini"><Icon name="backward" /></Button>
-                    </Menu.Item>
+                    <Settings
+                        apply={() => apply(this.state)}
+                        dateRange={this.state.dateRange}
+                        from={this.state.from}
+                        hitsPerPage={this.state.hitsPerPage}
+                        searchType={this.state.searchType}
+                        setState={(...args) => this.setState(...args)}
+                        sortOrder={this.state.sortOrder}
+                        to={this.state.to}
+                        toggle={toggle}
+                    />
                 </Sidebar>
-                    <Menu
-                        borderless
-                        className={s.noMarginTop}
-                        color="teal"
-                        inverted
-                        size="huge"
-                    >
-                        <Menu.Menu widths={2}>
-                            <Menu.Item header>
-                                <Image size="mini" spaced="right" src={logo} />
-                                Hacker news search
-                            </Menu.Item>
-                        </Menu.Menu>
-                        <Menu.Menu  position="right">
-                            <Button
-                                color="teal"
-                                onClick={(event) => {
-                                    event.stopPropagation();
-                                    toggle();
-                                }}
-                            >
-                                <Icon name="setting" size="large" />
-                            </Button>
-                        </Menu.Menu>
-                    </Menu>
+                <Menu
+                    borderless
+                    className={s.noMarginTop}
+                    color="teal"
+                    inverted
+                    size="huge"
+                >
+                    <Menu.Menu widths={2}>
+                        <Menu.Item header>
+                            <Image size="mini" spaced="right" src={logo} />
+                            Hacker news search
+                        </Menu.Item>
+                    </Menu.Menu>
+                    <Menu.Menu  position="right">
+                        <Button
+                            color="teal"
+                            onClick={(event) => {
+                                this.setState({ ...this.getSettings() });
+                                event.stopPropagation();
+                                toggle();
+                            }}
+                        >
+                            <Icon name="setting" size="large" />
+                        </Button>
+                    </Menu.Menu>
+                </Menu>
                 <Sidebar.Pusher
                     className={`${s.flex} ${s.flexGrow}`}
                     onClick={() => { if (showSidebar) toggle(); }}
@@ -130,16 +110,27 @@ export class Layout extends React.Component<IProps, IComponentState> {
 export default connect(mapStateToProps, mapDispatchToProps)(Layout);
 
 interface IStateProps {
+    dateRange: ISettingsState['dateRange'];
+    from: ISettingsState['from'];
+    hitsPerPage: ISettingsState['hitsPerPage'];
+    searchType: ISettingsState['searchType'];
     showSidebar: boolean;
+    sortOrder: ISettingsState['sortOrder'];
+    to: ISettingsState['to'];
 }
 
 interface IDispatchProps {
+    apply: (settings: ISettingsState) => Promise<any>;
     toggle: () => void;
 }
 
 interface IComponentState {
-    from: string;
-    to: string;
+    dateRange: ISettingsState['dateRange'];
+    from: ISettingsState['from'];
+    hitsPerPage: ISettingsState['hitsPerPage'];
+    searchType: ISettingsState['searchType'];
+    sortOrder: ISettingsState['sortOrder'];
+    to: ISettingsState['to'];
 }
 
 type IProps = IStateProps & IDispatchProps;

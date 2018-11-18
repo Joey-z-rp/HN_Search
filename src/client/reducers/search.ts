@@ -33,6 +33,7 @@ export default function reducer(
             };
 
         case HANDLE_SEARCH_RESULT:
+            if (state.searchFor !== action.result.query) return state;
             return { ...state, isFetching: false, result: action.result };
 
         case HANDLE_INPUT_CHANGE:

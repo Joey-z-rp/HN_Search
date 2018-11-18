@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { Button, Input } from 'semantic-ui-react';
 
+let searchTimer;
+
 const SearchBar: React.FunctionComponent<ISearchBarProps> = ({
     handleInputChange,
     search,
@@ -10,13 +12,18 @@ const SearchBar: React.FunctionComponent<ISearchBarProps> = ({
             <Button
                 color="teal"
                 content="Search"
-                onClick={() => search()}
+                onClick={search}
             />
         }
         fluid
         icon="search"
         iconPosition="left"
-        onChange={(event, data) => handleInputChange(data.value)}
+        onKeyUp={(event) => {
+            clearTimeout(searchTimer);
+            handleInputChange(event.target.value);
+            if (event.key === 'Enter') return search();
+            searchTimer = setTimeout(search, 300);
+        }}
         placeholder="Search..."
     />
 );

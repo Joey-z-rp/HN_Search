@@ -12,13 +12,13 @@ export interface ISearchResult {
 
 export interface IHit {
     created_at: string;
-    title: string;
-    url: string;
+    title: string | null;
+    url: string | null;
     author: string;
     points: number;
     story_text: string | null;
     comment_text: string | null;
-    num_comments: number;
+    num_comments: number | null;
     story_id: number | null;
     story_title: string | null;
     story_url: string | null;
@@ -38,4 +38,24 @@ interface IHightlightResultItem {
     matchLevel: string;
     fullyHighlighted?: boolean;
     matchedWords: string[];
+}
+
+export const enum SearchType {
+    All,
+    Stories,
+    Comments,
+}
+
+export const enum SortOrder {
+    Popularity,
+    Date,
+}
+
+export const enum DateRange {
+    AllTime,
+    LastDay,
+    PastWeek,
+    PastMonth,
+    PastYear,
+    Custom,
 }
