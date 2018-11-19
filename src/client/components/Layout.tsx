@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Button, Container, Icon, Image, Menu, Segment, Sidebar, } from 'semantic-ui-react';
+import { Button, Container, Icon, Image, Menu, Segment, Sidebar } from 'semantic-ui-react';
 
 import { toggleSidebar } from '../actions/navigation';
 import { applySettings } from '../actions/settings';

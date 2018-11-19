@@ -41,21 +41,21 @@ interface IHightlightResultItem {
 }
 
 export const enum SearchType {
-    All,
-    Stories,
-    Comments,
+    All = 'All',
+    Stories = 'Stories',
+    Comments = 'Comments',
 }
 
 export const enum SortOrder {
-    Popularity,
-    Date,
+    Popularity = 'Popularity',
+    Date = 'Date',
 }
 
 export const enum DateRange {
-    AllTime,
-    LastDay,
-    PastWeek,
-    PastMonth,
-    PastYear,
-    Custom,
+    AllTime = 'All Time',
+    LastDay = 'Last 24 hours',
+    PastWeek = 'Past Week',
+    PastMonth = 'Past Month',
+    PastYear = 'Past Year',
+    Custom = 'Custom',
 }

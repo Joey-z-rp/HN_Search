@@ -6,10 +6,11 @@ import { doSearch, handleInputChangeAction } from '../actions/search';
 import Layout from '../components/Layout';
 import Pagination from '../components/Pagination';
 import { IHit } from '../../types/search';
-import { IState } from '../../types/stateAndAction';
-import ResultCount from './search/ResultCount';
+import { ISettingsState, IState } from '../../types/stateAndAction';
+import SearchMetadata from './search/SearchMetadata';
 import SearchBar from './search/SearchBar';
 import SearchResult from './search/SearchResult';
+import { settings } from 'cluster';
 
 const mapStateToProps = (state: IState): IStateProps => ({
     error: state.search.error,
@@ -18,6 +19,7 @@ const mapStateToProps = (state: IState): IStateProps => ({
     nbHits: state.search.result.nbHits,
     nbPages: state.search.result.nbPages,
     page: state.search.page,
+    settings: state.settings,
 });
 
 const mapDispatchToProps = (dispatch): IDispatchProps => ({
@@ -42,6 +44,7 @@ class Search extends React.Component<IProps> {
             nbPages,
             page,
             search,
+            settings,
         } = this.props;
 
         return (
@@ -50,7 +53,7 @@ class Search extends React.Component<IProps> {
                     handleInputChange={handleInputChange}
                     search={search}
                 />
-                <ResultCount nbHits={nbHits} />
+                <SearchMetadata nbHits={nbHits} settings={settings} />
                 <SearchResult
                     error={error}
                     hits={hits}
@@ -76,6 +79,7 @@ interface IStateProps {
     nbHits: number | undefined;
     nbPages: number | undefined;
     page: number;
+    settings: ISettingsState;
 }
 
 interface IDispatchProps {
