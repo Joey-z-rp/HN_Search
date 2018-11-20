@@ -1,4 +1,5 @@
 const path = require('path');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const server = {
@@ -35,6 +36,7 @@ const server = {
     resolve: {
         extensions: ['.ts', '.tsx', '.js'],
     },
+    plugins: [new CleanWebpackPlugin('build', { root: path.resolve(__dirname , '..') })],
 };
 
 const client = {

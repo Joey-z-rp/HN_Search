@@ -10,7 +10,6 @@ import { ISettingsState, IState } from '../../types/stateAndAction';
 import SearchMetadata from './search/SearchMetadata';
 import SearchBar from './search/SearchBar';
 import SearchResult from './search/SearchResult';
-import { settings } from 'cluster';
 
 const mapStateToProps = (state: IState): IStateProps => ({
     error: state.search.error,

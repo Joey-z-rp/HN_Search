@@ -1,3 +1,4 @@
+const NodemonPlugin = require('nodemon-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const merge = require('webpack-merge');
 
@@ -14,6 +15,10 @@ const clientConfig = merge.smart(commonConfig.client, {
     plugins: [
         new BundleAnalyzerPlugin({
             openAnalyzer: false,
+        }),
+        new NodemonPlugin({
+            watch: './src',
+            script: './build/server.js',
         }),
     ],
 });
