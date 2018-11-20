@@ -8,8 +8,8 @@ import {
     Image,
 } from 'semantic-ui-react';
 
-import * as s from './pageNotFound/PageNotFound.css';
-import pageNotFoundImage from './pageNotFound/pageNotFound.svg';
+import * as s from '../components/pageNotFound/PageNotFound.css';
+import pageNotFoundImage from '../components/pageNotFound/pageNotFound.svg';
 
 export class PageNotFound extends React.PureComponent<any> {
     componentDidMount() {

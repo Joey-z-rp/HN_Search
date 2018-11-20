@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { Button, Input } from 'semantic-ui-react';
 
+import { ISearchBarProps } from '../interfaces/searchBar.interface';
+
 let searchTimer;
 
 const SearchBar: React.FunctionComponent<ISearchBarProps> = ({
@@ -29,8 +31,3 @@ const SearchBar: React.FunctionComponent<ISearchBarProps> = ({
 );
 
 export default SearchBar;
-
-interface ISearchBarProps {
-    handleInputChange: (input: string) => void;
-    search: () => Promise<any>;
-}

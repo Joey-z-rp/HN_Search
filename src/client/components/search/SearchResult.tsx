@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { Header, Icon, Item, Message, Segment } from 'semantic-ui-react';
 
-import Placeholder from '../../components/Placeholder';
-import { IHit } from '../../../types/search';
+import { ISearchResultProps } from '../interfaces/searchResult.interface';
+import Placeholder from '../Placeholder';
 import Hit from './Hit';
 
-const SearchResult: React.FunctionComponent<ISearchBarProps> = ({
+const SearchResult: React.FunctionComponent<ISearchResultProps> = ({
     error,
     hits,
     isFetching,
@@ -49,10 +49,3 @@ const SearchResult: React.FunctionComponent<ISearchBarProps> = ({
 };
 
 export default SearchResult;
-
-interface ISearchBarProps {
-    error: Error | null;
-    hits?: IHit[];
-    isFetching: boolean;
-    nbHits?: number;
-}

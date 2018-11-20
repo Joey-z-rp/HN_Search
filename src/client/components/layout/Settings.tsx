@@ -5,8 +5,8 @@ import * as React from 'react';
 import DatePicker from 'react-datepicker';
 import { Button, Menu, Select } from 'semantic-ui-react';
 
+import { ISettingsProps } from '../interfaces/settings.interface';
 import { DateRange, SearchType, SortOrder } from '../../../types/search';
-import { ISettingsState } from '../../../types/stateAndAction';
 import * as s from './Layout.css';
 
 const Settings: React.FunctionComponent<ISettingsProps> = ({
@@ -119,15 +119,3 @@ function handleChange(setState: ISettingsProps['setState'], key: string) {
 }
 
 export default Settings;
-
-interface ISettingsProps {
-    apply: () => Promise<any>;
-    dateRange: ISettingsState['dateRange'];
-    from: ISettingsState['from'];
-    hitsPerPage: ISettingsState['hitsPerPage'];
-    searchType: ISettingsState['searchType'];
-    setState: (state: object) => void;
-    sortOrder: ISettingsState['sortOrder'];
-    to: ISettingsState['to'];
-    toggle: () => void;
-}

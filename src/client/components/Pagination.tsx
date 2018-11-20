@@ -3,6 +3,8 @@ import MediaQuery from 'react-responsive';
 import { animateScroll } from 'react-scroll';
 import { Container, Pagination } from 'semantic-ui-react';
 
+import { IPaginationProps } from './interfaces/pagination.interface';
+
 const PaginationComponent: React.FunctionComponent<IPaginationProps> = ({
     handlePageChange,
     nbPages,
@@ -35,9 +37,3 @@ const PaginationComponent: React.FunctionComponent<IPaginationProps> = ({
     : null;
 
 export default PaginationComponent;
-
-interface IPaginationProps {
-    handlePageChange: (page: number) => Promise<any>;
-    nbPages?: number;
-    page: number;
-}

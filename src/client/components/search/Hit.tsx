@@ -4,6 +4,7 @@ import MediaQuery from 'react-responsive';
 import { Icon, Item, Label } from 'semantic-ui-react';
 
 import { IHit } from '../../../types/search';
+import * as s from './hit/Hit.css';
 
 const Hit: React.FunctionComponent<{ data: IHit }> = ({ data }) => (
     <Item>
@@ -36,6 +37,7 @@ const Hit: React.FunctionComponent<{ data: IHit }> = ({ data }) => (
                                     ? (
                                         <Label
                                             as="a"
+                                            className={s.marginTop}
                                             href={data.url}
                                             size={size}
                                         >

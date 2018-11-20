@@ -4,13 +4,19 @@ import { Button, Container, Icon, Image, Menu, Segment, Sidebar } from 'semantic
 
 import { toggleSidebar } from '../actions/navigation';
 import { applySettings } from '../actions/settings';
-import { ISettingsState, IState } from '../../types/stateAndAction';
+import { IState } from '../../types/stateAndAction';
 import logo from '../../../public/favicon.png';
 import Footer from './Footer';
+import {
+    ILayoutComponentState,
+    ILayoutDispatchProps,
+    ILayoutProps,
+    ILayoutStateProps,
+} from './interfaces/layout.interface';
 import * as s from './layout/Layout.css';
 import Settings from './layout/Settings';
 
-const mapStateToProps = (state: IState): IStateProps => ({
+const mapStateToProps = (state: IState): ILayoutStateProps => ({
     dateRange: state.settings.dateRange,
     from: state.settings.from,
     hitsPerPage: state.settings.hitsPerPage,
@@ -20,12 +26,12 @@ const mapStateToProps = (state: IState): IStateProps => ({
     to: state.settings.to,
 });
 
-const mapDispatchToProps = (dispatch): IDispatchProps => ({
+const mapDispatchToProps = (dispatch): ILayoutDispatchProps => ({
     apply: settings => dispatch(applySettings(settings)),
     toggle: () => dispatch(toggleSidebar()),
 });
 
-export class Layout extends React.Component<IProps, IComponentState> {
+export class Layout extends React.Component<ILayoutProps, ILayoutComponentState> {
     constructor(props) {
         super(props);
 
@@ -108,29 +114,3 @@ export class Layout extends React.Component<IProps, IComponentState> {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Layout);
-
-interface IStateProps {
-    dateRange: ISettingsState['dateRange'];
-    from: ISettingsState['from'];
-    hitsPerPage: ISettingsState['hitsPerPage'];
-    searchType: ISettingsState['searchType'];
-    showSidebar: boolean;
-    sortOrder: ISettingsState['sortOrder'];
-    to: ISettingsState['to'];
-}
-
-interface IDispatchProps {
-    apply: (settings: ISettingsState) => Promise<any>;
-    toggle: () => void;
-}
-
-interface IComponentState {
-    dateRange: ISettingsState['dateRange'];
-    from: ISettingsState['from'];
-    hitsPerPage: ISettingsState['hitsPerPage'];
-    searchType: ISettingsState['searchType'];
-    sortOrder: ISettingsState['sortOrder'];
-    to: ISettingsState['to'];
-}
-
-type IProps = IStateProps & IDispatchProps;

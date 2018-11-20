@@ -5,13 +5,17 @@ import { withRouter } from 'react-router-dom';
 import { doSearch, handleInputChangeAction } from '../actions/search';
 import Layout from '../components/Layout';
 import Pagination from '../components/Pagination';
-import { IHit } from '../../types/search';
-import { ISettingsState, IState } from '../../types/stateAndAction';
-import SearchMetadata from './search/SearchMetadata';
-import SearchBar from './search/SearchBar';
-import SearchResult from './search/SearchResult';
+import SearchMetadata from '../components/search/SearchMetadata';
+import SearchBar from '../components/search/SearchBar';
+import SearchResult from '../components/search/SearchResult';
+import { IState } from '../../types/stateAndAction';
+import {
+    ISearchDispatchProps,
+    ISearchProps,
+    ISearchStateProps,
+} from './interfaces/search.interface';
 
-const mapStateToProps = (state: IState): IStateProps => ({
+const mapStateToProps = (state: IState): ISearchStateProps => ({
     error: state.search.error,
     hits: state.search.result.hits,
     isFetching: state.search.isFetching,
@@ -21,13 +25,13 @@ const mapStateToProps = (state: IState): IStateProps => ({
     settings: state.settings,
 });
 
-const mapDispatchToProps = (dispatch): IDispatchProps => ({
+const mapDispatchToProps = (dispatch): ISearchDispatchProps => ({
     changePage: page => dispatch(doSearch(page)),
     handleInputChange: input => dispatch(handleInputChangeAction(input)),
     search: () => dispatch(doSearch()),
 });
 
-class Search extends React.Component<IProps> {
+class Search extends React.Component<ISearchProps> {
     componentDidMount() {
         this.props.search();
     }
@@ -70,21 +74,3 @@ class Search extends React.Component<IProps> {
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Search));
-
-interface IStateProps {
-    error: Error | null;
-    hits: IHit[] | undefined;
-    isFetching: boolean;
-    nbHits: number | undefined;
-    nbPages: number | undefined;
-    page: number;
-    settings: ISettingsState;
-}
-
-interface IDispatchProps {
-    changePage: (page: number) => Promise<any>;
-    handleInputChange: (input: string) => void;
-    search: () => Promise<any>;
-}
-
-type IProps = IStateProps & IDispatchProps;

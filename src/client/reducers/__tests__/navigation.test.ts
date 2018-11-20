@@ -1,5 +1,5 @@
-import reducer from './navigation';
-import { toggleSidebar } from '../actions/navigation';
+import reducer from '../navigation';
+import { toggleSidebar } from '../../actions/navigation';
 
 describe('navigation reducer', () => {
     it('should return the initial state', () => {
