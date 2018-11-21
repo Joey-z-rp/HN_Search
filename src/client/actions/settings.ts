@@ -15,7 +15,7 @@ export function changeSettings(settings: ISettingsState) {
 // async actions
 
 export function applySettings(settings: ISettingsState) {
-    return (dispatch, getState) => {
+    return (dispatch) => {
         dispatch(toggleSidebar());
         dispatch(changeSettings(settings));
 

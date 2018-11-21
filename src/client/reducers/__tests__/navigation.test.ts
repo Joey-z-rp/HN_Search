@@ -9,10 +9,10 @@ describe('navigation reducer', () => {
     });
 
     it('should change sidebar visibility', () => {
-        const state1 = reducer(undefined, toggleSidebar());
-        expect(state1).toEqual({ showSidebar: true });
+        const stateToggleOnce = reducer(undefined, toggleSidebar());
+        expect(stateToggleOnce).toEqual({ showSidebar: true });
 
-        const state2 = reducer(state1, toggleSidebar());
-        expect(state2).toEqual({ showSidebar: false });
+        const stateToggleTwice = reducer(stateToggleOnce, toggleSidebar());
+        expect(stateToggleTwice).toEqual({ showSidebar: false });
     });
 });

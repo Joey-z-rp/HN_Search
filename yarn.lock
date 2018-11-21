@@ -1293,6 +1293,11 @@ assert@^1.1.1:
   dependencies:
     util "0.10.3"
 
+assertion-error@^1.1.0:
+  version "1.1.0"
+  resolved "https://nexus.aurion.io/repository/npm-group/assertion-error/-/assertion-error-1.1.0.tgz#e60b6b0e8f301bd97e5375215bda406c85118c0b"
+  integrity sha512-jgsaNduz+ndvGyFt3uSuWqvy4lCnIJiovtouQN5JZHOKCS2QuhEdbcQHFhVksz2N2U9hXJo8odG7ETyWlEeuDw==
+
 assign-symbols@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/assign-symbols/-/assign-symbols-1.0.0.tgz#59667f41fadd4f20ccbc2bb96b8d4f7f78ec0367"
@@ -1944,6 +1949,18 @@ caseless@~0.12.0:
   version "0.12.0"
   resolved "https://registry.yarnpkg.com/caseless/-/caseless-0.12.0.tgz#1b681c21ff84033c826543090689420d187151dc"
 
+chai@^4.1.2:
+  version "4.2.0"
+  resolved "https://nexus.aurion.io/repository/npm-group/chai/-/chai-4.2.0.tgz#760aa72cf20e3795e84b12877ce0e83737aa29e5"
+  integrity sha512-XQU3bhBukrOsQCuwZndwGcCVQHyZi53fQ6Ys1Fym7E4olpIqqZZhhoFJoaKVvV17lWQoXYwgWN2nF5crA8J2jw==
+  dependencies:
+    assertion-error "^1.1.0"
+    check-error "^1.0.2"
+    deep-eql "^3.0.1"
+    get-func-name "^2.0.0"
+    pathval "^1.1.0"
+    type-detect "^4.0.5"
+
 chalk@2.4.1, chalk@^2.0.0, chalk@^2.0.1, chalk@^2.1.0, chalk@^2.3.0, chalk@^2.4.1:
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/chalk/-/chalk-2.4.1.tgz#18c49ab16a037b6eb0152cc83e3471338215b66e"
@@ -1965,6 +1982,11 @@ chalk@^1.0.0, chalk@^1.1.3:
 chardet@^0.7.0:
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/chardet/-/chardet-0.7.0.tgz#90094849f0937f2eedc2425d0d28a9e5f0cbad9e"
+
+check-error@^1.0.2:
+  version "1.0.2"
+  resolved "https://nexus.aurion.io/repository/npm-group/check-error/-/check-error-1.0.2.tgz#574d312edd88bb5dd8912e9286dd6c0aed4aac82"
+  integrity sha1-V00xLt2Iu13YkS6Sht1sCu1KrII=
 
 check-types@^7.3.0:
   version "7.4.0"
@@ -2646,6 +2668,13 @@ debug@^3.1.0:
   dependencies:
     ms "^2.1.1"
 
+debug@^4.1.0:
+  version "4.1.0"
+  resolved "https://nexus.aurion.io/repository/npm-group/debug/-/debug-4.1.0.tgz#373687bffa678b38b1cd91f861b63850035ddc87"
+  integrity sha512-heNPJUJIqC+xB6ayLAMHaIrmN9HKa7aQO8MGqKpvCA+uJYVcvR6l5kgdrhRuwPFHU7P5/A1w0BjByPHwpfTDKg==
+  dependencies:
+    ms "^2.1.1"
+
 decamelize@^1.1.1:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/decamelize/-/decamelize-1.2.0.tgz#f6534d15148269b20352e7bee26f501f9a191290"
@@ -2660,7 +2689,14 @@ decode-uri-component@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/decode-uri-component/-/decode-uri-component-0.2.0.tgz#eb3913333458775cb84cd1a1fae062106bb87545"
 
-deep-equal@^1.0.1:
+deep-eql@^3.0.1:
+  version "3.0.1"
+  resolved "https://nexus.aurion.io/repository/npm-group/deep-eql/-/deep-eql-3.0.1.tgz#dfc9404400ad1c8fe023e7da1df1c147c4b444df"
+  integrity sha512-+QeIQyN5ZuO+3Uk5DYh6/1eKO0m0YmJFGNmFHGACpf1ClL1nmlV/p4gNgbl2pJGxgXb4faqo6UE+M5ACEMyVcw==
+  dependencies:
+    type-detect "^4.0.0"
+
+deep-equal@^1.0.0, deep-equal@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/deep-equal/-/deep-equal-1.0.1.tgz#f5d260292b660e084eff4cdbc9f08ad3247448b5"
 
@@ -3769,6 +3805,11 @@ get-caller-file@^1.0.1:
 get-caller-file@^2.0.0:
   version "2.0.0"
   resolved "https://nexus.aurion.io/repository/npm-group/get-caller-file/-/get-caller-file-2.0.0.tgz#1e119be08623cdb28fb6b2873e671a758aa2b6eb"
+
+get-func-name@^2.0.0:
+  version "2.0.0"
+  resolved "https://nexus.aurion.io/repository/npm-group/get-func-name/-/get-func-name-2.0.0.tgz#ead774abee72e20409433a066366023dd6887a41"
+  integrity sha1-6td0q+5y4gQJQzoGY2YCPdaIekE=
 
 get-own-enumerable-property-symbols@^3.0.0:
   version "3.0.0"
@@ -5227,7 +5268,7 @@ json-stable-stringify@^1.0.1:
   dependencies:
     jsonify "~0.0.0"
 
-json-stringify-safe@~5.0.1:
+json-stringify-safe@^5.0.1, json-stringify-safe@~5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/json-stringify-safe/-/json-stringify-safe-5.0.1.tgz#1296a2d58fd45f19a0f6ce01d65701e2c735b6eb"
 
@@ -5484,6 +5525,11 @@ lodash.isarray@^3.0.0:
   version "3.0.4"
   resolved "https://nexus.aurion.io/repository/npm-group/lodash.isarray/-/lodash.isarray-3.0.4.tgz#79e4eb88c36a8122af86f844aa9bcd851b5fbb55"
   integrity sha1-eeTriMNqgSKvhvhEqpvNhRtfu1U=
+
+lodash.isplainobject@^4.0.6:
+  version "4.0.6"
+  resolved "https://nexus.aurion.io/repository/npm-group/lodash.isplainobject/-/lodash.isplainobject-4.0.6.tgz#7c526a52d89b45c45cc690b88163be0497f550cb"
+  integrity sha1-fFJqUtibRcRcxpC4gWO+BJf1UMs=
 
 lodash.keys@^3.0.0:
   version "3.1.2"
@@ -5934,6 +5980,21 @@ no-case@^2.2.0:
   resolved "https://registry.yarnpkg.com/no-case/-/no-case-2.3.2.tgz#60b813396be39b3f1288a4c1ed5d1e7d28b464ac"
   dependencies:
     lower-case "^1.1.1"
+
+nock@^10.0.2:
+  version "10.0.2"
+  resolved "https://nexus.aurion.io/repository/npm-group/nock/-/nock-10.0.2.tgz#9e9a92253808e480a8163c2a21fc12937c02c3b0"
+  integrity sha512-uWrdlRzG28SXM5yqYsUHfYBRqljF8P6aTRDh6Y5kTgs/Q4GB59QWlpiegmDHQouvmX/rDyKkC/nk+k4nA+QPNw==
+  dependencies:
+    chai "^4.1.2"
+    debug "^4.1.0"
+    deep-equal "^1.0.0"
+    json-stringify-safe "^5.0.1"
+    lodash "^4.17.5"
+    mkdirp "^0.5.0"
+    propagate "^1.0.0"
+    qs "^6.5.1"
+    semver "^5.5.0"
 
 node-fetch@2.1.2:
   version "2.1.2"
@@ -6480,6 +6541,11 @@ path-type@^3.0.0:
   resolved "https://registry.yarnpkg.com/path-type/-/path-type-3.0.0.tgz#cef31dc8e0a1a3bb0d105c0cd97cf3bf47f4e36f"
   dependencies:
     pify "^3.0.0"
+
+pathval@^1.1.0:
+  version "1.1.0"
+  resolved "https://nexus.aurion.io/repository/npm-group/pathval/-/pathval-1.1.0.tgz#b942e6d4bde653005ef6b71361def8727d0645e0"
+  integrity sha1-uULm1L3mUwBe9rcTYd74cn0GReA=
 
 pause-stream@^0.0.11:
   version "0.0.11"
@@ -7188,6 +7254,11 @@ prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2:
     loose-envify "^1.3.1"
     object-assign "^4.1.1"
 
+propagate@^1.0.0:
+  version "1.0.0"
+  resolved "https://nexus.aurion.io/repository/npm-group/propagate/-/propagate-1.0.0.tgz#00c2daeedda20e87e3782b344adba1cddd6ad709"
+  integrity sha1-AMLa7t2iDofjeCs0Stuhzd1q1wk=
+
 proxy-addr@~2.0.4:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/proxy-addr/-/proxy-addr-2.0.4.tgz#ecfc733bf22ff8c6f407fa275327b9ab67e48b93"
@@ -7262,7 +7333,7 @@ q@^1.1.2:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/q/-/q-1.5.1.tgz#7e32f75b41381291d04611f1bf14109ac00651d7"
 
-qs@6.5.2, qs@~6.5.2:
+qs@6.5.2, qs@^6.5.1, qs@~6.5.2:
   version "6.5.2"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.2.tgz#cb3ae806e8740444584ef154ce8ee98d403f3e36"
 
@@ -7393,7 +7464,7 @@ react-error-overlay@^5.1.0:
   version "5.1.0"
   resolved "https://nexus.aurion.io/repository/npm-group/react-error-overlay/-/react-error-overlay-5.1.0.tgz#c516995a5652e7bfbed8b497910d5280df74a7e8"
 
-react-is@^16.3.2, react-is@^16.6.0:
+react-is@^16.3.2, react-is@^16.6.0, react-is@^16.6.3:
   version "16.6.3"
   resolved "https://nexus.aurion.io/repository/npm-group/react-is/-/react-is-16.6.3.tgz#d2d7462fcfcbe6ec0da56ad69047e47e56e7eac0"
 
@@ -7521,6 +7592,16 @@ react-scroll@^1.7.10:
     lodash.throttle "^4.1.1"
     prop-types "^15.5.8"
 
+react-test-renderer@^16.6.3:
+  version "16.6.3"
+  resolved "https://nexus.aurion.io/repository/npm-group/react-test-renderer/-/react-test-renderer-16.6.3.tgz#5f3a1a7d5c3379d46f7052b848b4b72e47c89f38"
+  integrity sha512-B5bCer+qymrQz/wN03lT0LppbZUDRq6AMfzMKrovzkGzfO81a9T+PWQW6MzkWknbwODQH/qpJno/yFQLX5IWrQ==
+  dependencies:
+    object-assign "^4.1.1"
+    prop-types "^15.6.2"
+    react-is "^16.6.3"
+    scheduler "^0.11.2"
+
 react@^16.6.3:
   version "16.6.3"
   resolved "https://nexus.aurion.io/repository/npm-group/react/-/react-16.6.3.tgz#25d77c91911d6bbdd23db41e70fb094cc1e0871c"
@@ -7608,6 +7689,13 @@ recursive-readdir@2.2.2:
   resolved "https://registry.yarnpkg.com/recursive-readdir/-/recursive-readdir-2.2.2.tgz#9946fb3274e1628de6e36b2f6714953b4845094f"
   dependencies:
     minimatch "3.0.4"
+
+redux-mock-store@^1.5.3:
+  version "1.5.3"
+  resolved "https://nexus.aurion.io/repository/npm-group/redux-mock-store/-/redux-mock-store-1.5.3.tgz#1f10528949b7ce8056c2532624f7cafa98576c6d"
+  integrity sha512-ryhkkb/4D4CUGpAV2ln1GOY/uh51aczjcRz9k2L2bPx/Xja3c5pSGJJPyR25GNVRXtKIExScdAgFdiXp68GmJA==
+  dependencies:
+    lodash.isplainobject "^4.0.6"
 
 redux-thunk@^2.3.0:
   version "2.3.0"
@@ -8835,6 +8923,11 @@ type-check@~0.3.2:
   resolved "https://registry.yarnpkg.com/type-check/-/type-check-0.3.2.tgz#5884cab512cf1d355e3fb784f30804b2b520db72"
   dependencies:
     prelude-ls "~1.1.2"
+
+type-detect@^4.0.0, type-detect@^4.0.5:
+  version "4.0.8"
+  resolved "https://nexus.aurion.io/repository/npm-group/type-detect/-/type-detect-4.0.8.tgz#7646fb5f18871cfbb7749e69bd39a6388eb7450c"
+  integrity sha512-0fr/mIH1dlO+x7TlcMy+bIDqKPsw/70tVyeHW787goQjhmqaZe10uwLujubK9q9Lg6Fiho1KUKDYz0Z7k7g5/g==
 
 type-is@~1.6.16:
   version "1.6.16"
