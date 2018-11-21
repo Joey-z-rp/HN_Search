@@ -1,4 +1,16 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is for searching hacker stories and comments through [APIs](https://hn.algolia.com/api) provided by Hacker News. 
+
+## Features
+
+After the page is loaded, type in the content you want to search and pause, a search will be triggered. Hitting `Enter` key or clicking on the `Search` button will also fire the search.
+
+The results are returned in paged format. You can navigate around through the pagination bar under the results.
+
+You can change the search settings by clicking on the gear icon at top right corner. After changing the settings, please click `Apply` button on the side panel and a search request with new settings will be sent.
+
+### Note:
+
+As all the requests are sent from browser, if your browser does not allow cross origin content, you may get `Network error` error message. To get around this, please use browser plugins such as [Allow-Control-Allow-Origin: *](https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi?hl=en) for Chrome or other similar technologies. 
 
 ## Available Scripts
 
@@ -9,36 +21,29 @@ In the project directory, you can run:
 Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
-
 ### `npm test`
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Launches the test runner and run all the tests.<br>
 
-### `npm run build`
+### `npm build`
 
 Builds the app for production to the `build` folder.<br>
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+## Main Tech Stacks used
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### React
 
-### `npm run eject`
+To construct UI components
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Redux
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+To manage state for components, handle events
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Express
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+To serve static content
 
-## Learn More
+### Jest
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+To run tests and provide test coverage
