@@ -24,7 +24,8 @@
     "build": "webpack --config ./webpackConfig/production.js",
     "lint": "tslint -c tslint.json -p .",
     "test": "yarn lint && jest",
-    "test-jest": "jest"
+    "test-jest": "jest",
+    "heroku-postbuild": "yarn build"
   },
   "eslintConfig": {
     "extends": "react-app"
