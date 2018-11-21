@@ -1,3 +1,5 @@
+# Search Hacker News
+
 This project is for searching hacker stories and comments through [APIs](https://hn.algolia.com/api) provided by Hacker News. 
 
 ## Features
@@ -10,7 +12,7 @@ You can change the search settings by clicking on the gear icon at top right cor
 
 ### Note:
 
-As all the requests are sent from browser, if your browser does not allow cross origin content, you may get `Network error` error message. To get around this, please use browser plugins such as [Allow-Control-Allow-Origin: *](https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi?hl=en) for Chrome or other similar technologies. 
+As all the requests are sent from browser, if your browser does not allow cross origin content, you may get `Network request failed` error message. To get around this, please use browser plugins such as [Allow-Control-Allow-Origin: *](https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi?hl=en) for Chrome or other similar technologies. 
 
 ## Available Scripts
 
@@ -25,7 +27,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 Launches the test runner and run all the tests.<br>
 
-### `npm build`
+### `npm run build`
 
 Builds the app for production to the `build` folder.<br>
 It correctly bundles React in production mode and optimizes the build for the best performance.
@@ -42,7 +44,7 @@ To manage state for components, handle events
 
 ### Express
 
-To serve static content
+To serve static contents
 
 ### Jest
 
