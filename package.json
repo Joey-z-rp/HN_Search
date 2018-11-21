@@ -23,7 +23,7 @@
     "start": "webpack --config ./webpackConfig/development.js --watch",
     "build": "webpack --config ./webpackConfig/production.js",
     "lint": "tslint -c tslint.json -p .",
-    "test": "yarn lint && jest",
+    "test": "npm run lint && jest",
     "test-jest": "jest",
     "heroku-postbuild": "npm run build"
   },

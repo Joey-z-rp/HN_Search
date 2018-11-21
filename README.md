@@ -1,6 +1,8 @@
 # Search Hacker News
 
-This project is for searching hacker stories and comments through [APIs](https://hn.algolia.com/api) provided by Hacker News. 
+This project is for searching hacker stories and comments through [APIs](https://hn.algolia.com/api) provided by Hacker News.
+
+The application is hosted [here](https://search-hacker-news.herokuapp.com).
 
 ## Features
 
@@ -12,7 +14,9 @@ You can change the search settings by clicking on the gear icon at top right cor
 
 ### Note:
 
-As all the requests are sent from browser, if your browser does not allow cross origin content, you may get `Network request failed` error message. To get around this, please use browser plugins such as [Allow-Control-Allow-Origin: *](https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi?hl=en) for Chrome or other similar technologies. 
+As all the requests are sent from browser, if your browser does not allow cross origin content, you may get `Network request failed` error message. To get around this, please use browser plugins such as [Allow-Control-Allow-Origin: *](https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi?hl=en) for Chrome or other similar technologies.
+
+IE and Edge may not work correctly as they do not support `upgrade-insecure-requests` for `Content-Security-Policy`. 
 
 ## Available Scripts
 

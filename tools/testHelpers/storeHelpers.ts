@@ -1,9 +1,9 @@
+import { Store } from 'redux';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
 import reducers from '../../src/client/reducers';
 import { IState } from '../../src/types/stateAndAction';
-import { Store } from 'redux';
 
 export function getInitialState(): IState {
     return reducers(undefined, { type: null });

@@ -1,7 +1,8 @@
+import * as moment from 'moment';
+
 import reducer from '../settings';
 import { changeSettings } from '../../actions/settings';
 import { DateRange, SearchType, SortOrder } from '../../../types/search';
-import * as moment from 'moment';
 
 describe('settings reducer', () => {
     let initialState;

@@ -1,8 +1,8 @@
 import * as React from 'react';
 
 import SearchMetadata from '../search/SearchMetadata';
-import { renderComponent } from '../../../../tools/testHelpers/componentHelpers';
 import { DateRange, SearchType, SortOrder } from '../../../types/search';
+import { renderComponent } from '../../../../tools/testHelpers/componentHelpers';
 
 it('SearchMetadata renders correctly', () => {
     const props = {
