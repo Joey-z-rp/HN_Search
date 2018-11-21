@@ -87,7 +87,7 @@ describe.each([
         { ...settings },
         'test',
         undefined,
-        'http://hn.algolia.com/api/v1/search?query=test&tags=(story,comment)&hitsPerPage=20',
+        'https://hn.algolia.com/api/v1/search?query=test&tags=(story,comment)&hitsPerPage=20',
     ],
     [
         {
@@ -96,7 +96,7 @@ describe.each([
         },
         'test',
         undefined,
-        'http://hn.algolia.com/api/v1/search_by_date?query=test&tags=(story,comment)&hitsPerPage=20',
+        'https://hn.algolia.com/api/v1/search_by_date?query=test&tags=(story,comment)&hitsPerPage=20',
     ],
     [
         {
@@ -105,13 +105,13 @@ describe.each([
         },
         'test',
         undefined,
-        'http://hn.algolia.com/api/v1/search?query=test&tags=(story,comment)&hitsPerPage=50',
+        'https://hn.algolia.com/api/v1/search?query=test&tags=(story,comment)&hitsPerPage=50',
     ],
     [
         { ...settings },
         'test',
         2,
-        'http://hn.algolia.com/api/v1/search?query=test&tags=(story,comment)&hitsPerPage=20&page=1',
+        'https://hn.algolia.com/api/v1/search?query=test&tags=(story,comment)&hitsPerPage=20&page=1',
     ],
 ])(
     'generateURL',

@@ -8,15 +8,9 @@ The application is hosted [here](https://search-hacker-news.herokuapp.com).
 
 After the page is loaded, type in the content you want to search and pause, a search will be triggered. Hitting `Enter` key or clicking on the `Search` button will also fire the search.
 
-The results are returned in paged format. You can navigate around through the pagination bar under the results.
+The results are returned in paged format. You can navigate around through the pagination bar under the results. Search text will be highlighted in the results.
 
 You can change the search settings by clicking on the gear icon at top right corner. After changing the settings, please click `Apply` button on the side panel and a search request with new settings will be sent.
-
-### Note:
-
-As all the requests are sent from browser, if your browser does not allow cross origin content, you may get `Network request failed` error message. To get around this, please use browser plugins such as [Allow-Control-Allow-Origin: *](https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi?hl=en) for Chrome or other similar technologies.
-
-IE and Edge may not work correctly as they do not support `upgrade-insecure-requests` for `Content-Security-Policy`. 
 
 ## Available Scripts
 

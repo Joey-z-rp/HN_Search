@@ -8,7 +8,7 @@ export default function generateURL(
     input: string,
     page?: number,
 ): string {
-    const base = 'http://hn.algolia.com/api/v1/';
+    const base = 'https://hn.algolia.com/api/v1/';
 
     const endpoint = settings.sortOrder === SortOrder.Date
         ? 'search_by_date'

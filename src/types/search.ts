@@ -27,9 +27,12 @@ export interface IHit {
     _tags: string[];
     objectID: string;
     _highlightResult: {
+        author: IHightlightResultItem;
+        comment_text: IHightlightResultItem;
+        story_text: IHightlightResultItem;
+        story_title: IHightlightResultItem,
         title: IHightlightResultItem;
         url: IHightlightResultItem;
-        author: IHightlightResultItem;
     };
 }
 

@@ -40,7 +40,7 @@ export default function reducer(
             return { ...state, input: action.input };
 
         case HANDLE_PAGE_CHANGE:
-            return { ...state, page: action.page };
+            return { ...state, isFetching: true, page: action.page };
 
         case SET_SEARCH_ERROR:
             return { ...state, error: action.error, isFetching: false };

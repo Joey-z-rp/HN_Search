@@ -82,6 +82,7 @@ describe('search reducer', () => {
     it('should HANDLE_PAGE_CHANGE action', () => {
         const expectedState = {
             ...initialState,
+            isFetching: true,
             page: 2,
         };
 
